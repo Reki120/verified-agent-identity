@@ -21,7 +21,6 @@ jobs:
 
       - name: Install Verified Agent Identity
         run: |
-          npm install -g @clawhub/cli
           clawhub install verified-agent-identity --force
 
       - name: Install dependencies
