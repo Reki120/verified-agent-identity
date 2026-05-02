@@ -16,8 +16,8 @@ jobs:
 
       - name: Install Verified Agent Identity
         run: |
-          echo "Menjalankan instalasi dengan force..."
-          npx @clawhub/cli install verified-agent-identity --force
+          echo "Menjalankan instalasi dari sumber spesifik..."
+          npx @clawhub/cli install @clawhub/verified-agent-identity --force
 
       - name: Create Ethereum Identity
         run: node scripts/createNewEthereumIdentity.js
