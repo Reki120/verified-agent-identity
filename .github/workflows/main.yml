@@ -11,13 +11,24 @@ jobs:
         with:
           bun-version: latest
 
+      steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: latest
+
       - name: Install Clawhub CLI
         run: npm install -g @clawhub/cli
 
+      - name: Clone Skill Repository
+        run: git clone https://github.com/BillionsNetwork/verified-agent-identity.git temp-skill
+
       - name: Install Verified Agent Identity
         run: |
-          echo "Menjalankan instalasi langsung dari repositori..."
-          npx @clawhub/cli install BillionsNetwork/verified-agent-identity --force
+          echo "Menjalankan instalasi dari folder lokal..."
+          cd temp-skill && npx @clawhub/cli install . --force
 
       - name: Create Ethereum Identity
         run: node scripts/createNewEthereumIdentity.js
