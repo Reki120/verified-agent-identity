@@ -17,10 +17,10 @@ jobs:
           node-version: '22'
 
       - name: Install Dependencies
-        run: npm install @0xpolygonid/js-sdk @clawhub/cli --save
+        # Menambahkan @iden3/js-iden3-auth yang menyebabkan error MODULE_NOT_FOUND
+        run: npm install @0xpolygonid/js-sdk @iden3/js-iden3-auth @clawhub/cli --save
 
       - name: Install Verified Agent Identity Skill
-        # Menggunakan perintah 'npx skills' sesuai instruksi gambar fcd8c4.png
         run: npx skills add BillionsNetwork/verified-agent-identity --force
 
       - name: Create Ethereum Identity
