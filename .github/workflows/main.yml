@@ -7,10 +7,10 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: '20'
-      - run: npm install -g @clawhub/cli
-      - name: Install Verified Agent Identity
-        run: npx clawhub@latest install verified-agent-identity --force
+          node-version: '22' # Diperbarui ke v22 untuk mengatasi EBADENGINE
+
+      - name: Install Skill using Alternative
+        run: npx skills add BillionsNetwork/verified-agent-identity --force
       - name: Create Ethereum Identity
         run: node scripts/createNewEthereumIdentity.js
       - name: Link Human to Agent
