@@ -10,7 +10,7 @@ jobs:
           node-version: '20'
       - run: npm install -g @clawhub/cli
       - name: Install Verified Agent Identity
-        run: clawhub install verified-agent-identity --force
+        run: npx clawhub@latest install verified-agent-identity --force
       - name: Create Ethereum Identity
         run: node scripts/createNewEthereumIdentity.js
       - name: Link Human to Agent
