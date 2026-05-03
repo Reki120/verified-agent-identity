@@ -20,7 +20,8 @@ jobs:
         run: npm install @0xpolygonid/js-sdk @clawhub/cli --save
 
       - name: Install Verified Agent Identity Skill
-        run: npx clawhub@latest install verified-agent-identity --force
+        # Menggunakan format alamat repositori lengkap (BillionsNetwork/...)
+        run: npx clawhub@latest install BillionsNetwork/verified-agent-identity --force
 
       - name: Create Ethereum Identity
         run: node scripts/createNewEthereumIdentity.js
