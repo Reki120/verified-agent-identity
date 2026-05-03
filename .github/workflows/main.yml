@@ -1,17 +1,29 @@
 name: Verify Human Identity
-on: [workflow_dispatch]
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ develop ]
+
 jobs:
   verify:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
-          node-version: '22' # Diperbarui ke v22 untuk mengatasi EBADENGINE
+          node-version: '22'
 
-      - name: Install Skill using Alternative
-        run: npx skills add BillionsNetwork/verified-agent-identity --force
+      - name: Install Dependencies
+        run: npm install @0xpolygonid/js-sdk @clawhub/cli --save
+
+      - name: Install Verified Agent Identity Skill
+        run: npx clawhub@latest install verified-agent-identity --force
+
       - name: Create Ethereum Identity
         run: node scripts/createNewEthereumIdentity.js
+
       - name: Link Human to Agent
         run: node scripts/manualLinkHumanToAgent.js --challenge '{"name":"Reki120","description":"Reki120 AI Agent"}'
